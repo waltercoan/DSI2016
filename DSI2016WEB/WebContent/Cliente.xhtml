@@ -11,7 +11,7 @@
 		<body>
 			<h:form>
 				<p:panel header="Manter Cliente">
-					<p:dataTable>
+					<p:dataTable value="#{crtcliente.getAll()}">
 						<f:facet name="header">Lista de Clientes</f:facet>
 						<p:column>
 							<f:facet name="header">Nome</f:facet>
@@ -23,12 +23,37 @@
 						</p:column>
 						<f:facet name="footer">
 							<p:commandButton value="Incluir" 
-								id="cbIncluir"/>
-					
+								id="cbIncluir" onsuccess="PF('dlg1').show()"/>
 						</f:facet>
 					</p:dataTable>
 				</p:panel>
-			</h:form>	
+			</h:form>
+			
+			<!--  AQUI OHHHHH -->
+			<p:dialog width="500" height="300" 
+				id="detailDialog" modal="true"
+				header="Detalhe do Cliente" 
+				widgetVar="dlg1">
+				<h:form id="form">
+					<h:panelGrid id="formDetail" columns="2">
+						<h:outputLabel name="lblNome" value="Nome"/>
+						<p:inputText id="txtNome" label="lblNome"/>
+						
+						<h:outputLabel name="lblEnder" value="Endereço"/>
+						<p:inputTextarea cols="10"  rows="4" 
+							id="txtEndereco" label="lblEnder"/>
+						
+						<f:facet name="footer">
+			               <p:commandButton  value="OK"
+			               	id="cbOK" 
+			               	onsuccess="PF('dlg1').hide()"/>
+			               <p:commandButton  value="Cancelar"
+			               	id="cbCancelar" 
+			               	onsuccess="PF('dlg1').hide()"/>			               	
+			            </f:facet>
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>	
 		</body>
 </html>
 
