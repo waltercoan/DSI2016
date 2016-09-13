@@ -9,21 +9,32 @@
 			<title>Manter Clientes</title>
 		</h:head>
 		<body>
-			<h:form>
+			<h:form id="formtable">
 				<p:panel header="Manter Cliente">
-					<p:dataTable value="#{crtcliente.getAll()}">
+					<p:dataTable value="#{crtcliente.getAll()}"
+						 selectionMode="single"
+						 selection="#{crtcliente.model}"
+						 rowKey="#{umcliente.oid}"
+						 var="umcliente" id="tabledados">
 						<f:facet name="header">Lista de Clientes</f:facet>
 						<p:column>
 							<f:facet name="header">Nome</f:facet>
-							<h:outputText /> 
+							<h:outputText value="#{umcliente.nome}" /> 
 						</p:column>
 						<p:column>
 							<f:facet name="header">Endereço</f:facet>
-							<h:outputText /> 
+							<h:outputText value="#{umcliente.endereco}" /> 
 						</p:column>
 						<f:facet name="footer">
 							<p:commandButton value="Incluir" 
-								id="cbIncluir" onsuccess="PF('dlg1').show()"/>
+								id="cbIncluir" 
+								update=":form"
+								action="#{crtcliente.create()}"
+								onsuccess="PF('dlg1').show()"/>
+							<p:commandButton value="Alterar" 
+								id="cbAlterar" 
+								update=":form"
+								onsuccess="PF('dlg1').show()"/>
 						</f:facet>
 					</p:dataTable>
 				</p:panel>
@@ -37,18 +48,23 @@
 				<h:form id="form">
 					<h:panelGrid id="formDetail" columns="2">
 						<h:outputLabel name="lblNome" value="Nome"/>
-						<p:inputText id="txtNome" label="lblNome"/>
+						<p:inputText id="txtNome" label="lblNome"
+							value="#{crtcliente.model.nome}"/>
 						
 						<h:outputLabel name="lblEnder" value="Endereço"/>
 						<p:inputTextarea cols="10"  rows="4" 
-							id="txtEndereco" label="lblEnder"/>
+							id="txtEndereco" label="lblEnder"
+							value="#{crtcliente.model.endereco}"/>
 						
 						<f:facet name="footer">
 			               <p:commandButton  value="OK"
 			               	id="cbOK" 
+			               	action="#{crtcliente.save()}"
+			               	update=":formtable:tabledados"
 			               	onsuccess="PF('dlg1').hide()"/>
 			               <p:commandButton  value="Cancelar"
 			               	id="cbCancelar" 
+			               	update=":formtable:tabledados"
 			               	onsuccess="PF('dlg1').hide()"/>			               	
 			            </f:facet>
 					</h:panelGrid>
