@@ -23,6 +23,10 @@ public class CrtCliente {
 		clienteBean.save(model);
 	}
 	
+	public void remove(){
+		clienteBean.remove(model);
+	}
+	
 	
 	public List<Cliente> getAll(){
 		return clienteBean.getAll();

@@ -35,6 +35,10 @@
 								id="cbAlterar" 
 								update=":form"
 								onsuccess="PF('dlg1').show()"/>
+							<p:commandButton 
+								value="Excluir" id="cbExcluir"
+								icon="ui-icon-extlink"
+								oncomplete="PF('dlgRemove').show()"/>	
 						</f:facet>
 					</p:dataTable>
 				</p:panel>
@@ -69,7 +73,27 @@
 			            </f:facet>
 					</h:panelGrid>
 				</h:form>
-			</p:dialog>	
+			</p:dialog>
+			
+			<p:dialog width="500" height="50" 
+					  id="removeDialog" modal="true"
+					  header="Confirma Exclusão do registro?"
+					  widgetVar="dlgRemove">
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:commandButton 
+							action="#{crtcliente.remove()}"
+							update=":formtable" value="OK"/>
+					 	<h:commandButton 
+					 		immediate="true"
+					 		update=":formtable" value="Cancelar"
+					 	/>
+					
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+			
+				
 		</body>
 </html>
 
