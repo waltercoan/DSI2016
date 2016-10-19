@@ -16,6 +16,9 @@ import javax.persistence.TemporalType;
 	@NamedQuery(name="getAllCliente", 
 		query="select c from Cliente c"),
 		
+	@NamedQuery(name="getClienteByNome", 
+		query="select c from Cliente c where c.nome like :nome"),
+		
 })
 
 @Entity

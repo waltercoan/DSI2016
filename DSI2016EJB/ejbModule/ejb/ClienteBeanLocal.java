@@ -9,4 +9,6 @@ public interface ClienteBeanLocal {
 	public void save(Cliente c);
 	public void remove(Cliente c);
 	public List<Cliente> getAll();
+	
+	public List<Cliente> getClienteByNome(String nome);
 }

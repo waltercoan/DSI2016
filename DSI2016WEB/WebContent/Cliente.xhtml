@@ -10,8 +10,18 @@
 		</h:head>
 		<body>
 			<h:form id="formtable">
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 				<p:panel header="Manter Cliente">
-					<p:dataTable value="#{crtcliente.getAll()}"
+					<p:inputText id="txtBusca"
+						value="#{crtcliente.valorBusca}"/>
+					<p:commandButton value="Busca"
+						id="cbBuscar"
+						action="#{crtcliente.busca()}"
+						update="tabledados" />
+						
+						
+						
+					<p:dataTable value="#{crtcliente.colClientes}"
 						 selectionMode="single"
 						 selection="#{crtcliente.model}"
 						 rowKey="#{umcliente.oid}"

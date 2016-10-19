@@ -39,6 +39,7 @@ public class ClienteBean implements ClienteBeanLocal {
 	}
 	@Override
 	public void remove(Cliente c) {
+		c = em.find(Cliente.class, c.getOid());
 		em.remove(c);
 	}
 
@@ -47,8 +48,21 @@ public class ClienteBean implements ClienteBeanLocal {
 		Query q = em.createNamedQuery("getAllCliente");
 		return q.getResultList();
 	}
+
+	@Override
+	public List<Cliente> getClienteByNome(String nome) {
+		Query q = em.createNamedQuery("getClienteByNome");
+		q.setParameter("nome", "%"+nome+"%");
+		return q.getResultList();
+	}
 	
 
 
 
 }
+
+
+
+
+
+
