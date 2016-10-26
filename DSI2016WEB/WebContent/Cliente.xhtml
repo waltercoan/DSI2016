@@ -1,110 +1,101 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
-  	  xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<!--  Aqui começa!!!  -->
+<ui:decorate template="template.xhtml">
+	<ui:define name="centro">
+
+
 		<h:head>
-			<meta charset="UTF-8"/>
+			<meta charset="UTF-8" />
 			<title>Manter Clientes</title>
 		</h:head>
 		<body>
 			<h:form id="formtable">
-				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
 				<p:panel header="Manter Cliente">
-					<p:inputText id="txtBusca"
-						value="#{crtcliente.valorBusca}"/>
-					<p:commandButton value="Busca"
-						id="cbBuscar"
-						action="#{crtcliente.busca()}"
-						update="tabledados" />
-						
-						
-						
+					<p:inputText id="txtBusca" value="#{crtcliente.valorBusca}" />
+					<p:commandButton value="Busca" id="cbBuscar"
+						action="#{crtcliente.busca()}" update="tabledados" />
+
+
+
 					<p:dataTable value="#{crtcliente.colClientes}"
-						 selectionMode="single"
-						 selection="#{crtcliente.model}"
-						 rowKey="#{umcliente.oid}"
-						 var="umcliente" id="tabledados">
+						selectionMode="single" selection="#{crtcliente.model}"
+						rowKey="#{umcliente.oid}" var="umcliente" id="tabledados">
 						<f:facet name="header">Lista de Clientes</f:facet>
 						<p:column>
 							<f:facet name="header">Nome</f:facet>
-							<h:outputText value="#{umcliente.nome}" /> 
+							<h:outputText value="#{umcliente.nome}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">Endereço</f:facet>
-							<h:outputText value="#{umcliente.endereco}" /> 
+							<h:outputText value="#{umcliente.endereco}" />
 						</p:column>
 						<f:facet name="footer">
-							<p:commandButton value="Incluir" 
-								id="cbIncluir" 
-								update=":form"
-								action="#{crtcliente.create()}"
-								onsuccess="PF('dlg1').show()"/>
-							<p:commandButton value="Alterar" 
-								id="cbAlterar" 
-								update=":form"
-								onsuccess="PF('dlg1').show()"/>
-							<p:commandButton 
-								value="Excluir" id="cbExcluir"
-								icon="ui-icon-extlink"
-								oncomplete="PF('dlgRemove').show()"/>	
+							<p:commandButton value="Incluir" id="cbIncluir" update=":form"
+								action="#{crtcliente.create()}" onsuccess="PF('dlg1').show()" />
+							<p:commandButton value="Alterar" id="cbAlterar" update=":form"
+								onsuccess="PF('dlg1').show()" />
+							<p:commandButton value="Excluir" id="cbExcluir"
+								icon="ui-icon-extlink" oncomplete="PF('dlgRemove').show()" />
 						</f:facet>
 					</p:dataTable>
 				</p:panel>
 			</h:form>
-			
+
 			<!--  AQUI OHHHHH -->
-			<p:dialog width="500" height="300" 
-				id="detailDialog" modal="true"
-				header="Detalhe do Cliente" 
-				widgetVar="dlg1">
+			<p:dialog width="500" height="300" id="detailDialog" modal="true"
+				header="Detalhe do Cliente" widgetVar="dlg1"
+				appendTo="@(body)">
 				<h:form id="form">
 					<h:panelGrid id="formDetail" columns="2">
-						<h:outputLabel name="lblNome" value="Nome"/>
+						<h:outputLabel name="lblNome" value="Nome" />
 						<p:inputText id="txtNome" label="lblNome"
-							value="#{crtcliente.model.nome}"/>
-						
-						<h:outputLabel name="lblEnder" value="Endereço"/>
-						<p:inputTextarea cols="10"  rows="4" 
-							id="txtEndereco" label="lblEnder"
-							value="#{crtcliente.model.endereco}"/>
-						
+							value="#{crtcliente.model.nome}" />
+
+						<h:outputLabel name="lblEnder" value="Endereço" />
+						<p:inputTextarea cols="10" rows="4" id="txtEndereco"
+							label="lblEnder" value="#{crtcliente.model.endereco}" />
+
 						<f:facet name="footer">
-			               <p:commandButton  value="OK"
-			               	id="cbOK" 
-			               	action="#{crtcliente.save()}"
-			               	update=":formtable:tabledados"
-			               	onsuccess="PF('dlg1').hide()"/>
-			               <p:commandButton  value="Cancelar"
-			               	id="cbCancelar" 
-			               	update=":formtable:tabledados"
-			               	onsuccess="PF('dlg1').hide()"/>			               	
-			            </f:facet>
+							<p:commandButton value="OK" id="cbOK"
+								action="#{crtcliente.save()}" update=":formtable:tabledados"
+								onsuccess="PF('dlg1').hide()" />
+							<p:commandButton value="Cancelar" id="cbCancelar"
+								update=":formtable:tabledados" onsuccess="PF('dlg1').hide()" />
+						</f:facet>
 					</h:panelGrid>
 				</h:form>
 			</p:dialog>
-			
-			<p:dialog width="500" height="50" 
-					  id="removeDialog" modal="true"
-					  header="Confirma Exclusão do registro?"
-					  widgetVar="dlgRemove">
+
+			<p:dialog width="500" height="50" id="removeDialog" modal="true"
+				header="Confirma Exclusão do registro?" widgetVar="dlgRemove"
+				appendTo="@(body)">
 				<h:form>
 					<h:panelGrid columns="2">
-						<h:commandButton 
-							action="#{crtcliente.remove()}"
-							update=":formtable" value="OK"/>
-					 	<h:commandButton 
-					 		immediate="true"
-					 		update=":formtable" value="Cancelar"
-					 	/>
-					
-					</h:panelGrid>
+						<h:commandButton action="#{crtcliente.remove()}"
+							update=":formtable" value="OK" />
+						<h:commandButton immediate="true" update=":formtable"
+							value="Cancelar" />
+
+						</h:panelGrid>
 				</h:form>
 			</p:dialog>
-			
-				
 		</body>
+		<!--  Aqui termina...  -->
+
+
+	</ui:define>
+</ui:decorate>
+
+
 </html>
 
 
