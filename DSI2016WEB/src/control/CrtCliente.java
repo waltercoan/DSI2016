@@ -10,7 +10,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import model.Cidade;
 import model.Cliente;
+import ejb.CidadeBeanLocal;
 import ejb.ClienteBeanLocal;
 
 @ManagedBean(name="crtcliente")
@@ -18,18 +20,36 @@ import ejb.ClienteBeanLocal;
 public class CrtCliente {
 	@EJB
 	private ClienteBeanLocal clienteBean;
+	@EJB
+	private CidadeBeanLocal cidadeBean;
+	
 	private Cliente model = new Cliente();
 	private String valorBusca;
 	
+	private List<Cidade> colCidades = new ArrayList<Cidade>();
 	private List<Cliente> colClientes = new ArrayList<Cliente>();
 	
 	@PostConstruct
 	public void init(){
 		colClientes = clienteBean.getAll();
+		
+		colCidades = cidadeBean.getAll();
 	}
 	
 	
 	
+	public List<Cidade> getColCidades() {
+		return colCidades;
+	}
+
+
+
+	public void setColCidades(List<Cidade> colCidades) {
+		this.colCidades = colCidades;
+	}
+
+
+
 	public void create(){
 		model = new Cliente();
 	}

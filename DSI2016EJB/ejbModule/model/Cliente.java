@@ -2,11 +2,13 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
@@ -36,6 +38,16 @@ public class Cliente {
 	@Column(unique=true)
 	private String email;
 	
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+	private Cidade cidadeNasc;
+	
+	
+	public Cidade getCidadeNasc() {
+		return cidadeNasc;
+	}
+	public void setCidadeNasc(Cidade cidadeNasc) {
+		this.cidadeNasc = cidadeNasc;
+	}
 	public long getOid() {
 		return oid;
 	}
