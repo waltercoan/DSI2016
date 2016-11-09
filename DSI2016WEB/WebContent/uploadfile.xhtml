@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:decorate template="template.xhtml">
+	<ui:define name="centro">
+
+
+		<h:head>
+			<meta charset="UTF-8" />
+			<title>UPLOAD FILE</title>
+		</h:head>
+		<body>
+		<h:form enctype="multipart/form-data">
+		    <p:fileUpload fileUploadListener="#{crtupload.handleFileUpload}" mode="advanced" dragDropSupport="false"
+           update="messages" sizeLimit="100000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+ 
+    	<p:growl id="messages" showDetail="true" />
+		</h:form>
+			
+		    
+	
+		</body>
+
+
+	</ui:define>
+</ui:decorate>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
