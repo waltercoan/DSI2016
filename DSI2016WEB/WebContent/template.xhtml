@@ -27,7 +27,7 @@
                                     <p:menuitem value="Produtos" icon="ui-icon-contact" url="FrmProduto.xhtml"/>
                                     <p:menuitem value="Clientes" icon="ui-icon-contact" url="Cliente.xhtml"/>         
                                     <p:menuitem value="Cidade" icon="ui-icon-contact" url="Cidade.xhtml"/>
-                                    <p:menuitem value="Logoff" icon="ui-icon-contact"/>
+                                    <p:menuitem value="Logoff" icon="ui-icon-contact" action="#{crtTemplate.dologoff()}"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
@@ -43,12 +43,16 @@
 				<p:dialog  widgetVar="dlgLogin" resizable="false"  closable="false" modal="true">
 					<h:panelGrid columns="2">
 						<h:outputLabel value="Login"/>
-						<p:inputText id="txtLogin" />
+						<p:inputText id="txtLogin" 
+							value="#{crtTemplate.model.usuario}"/>
 					
 						<h:outputLabel value="Senha"/>
-						<p:inputText id="txtSenha" />
+						<p:password id="txtSenha" 
+							value="#{crtTemplate.model.senha}"/>
 								
-						<p:commandButton value="OK"/>		
+						<p:commandButton value="OK"
+							action="#{crtTemplate.validar()}"/>		
+							
 						
 					</h:panelGrid>
 				</p:dialog>
