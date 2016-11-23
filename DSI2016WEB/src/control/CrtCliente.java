@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 
 import model.Cidade;
 import model.Cliente;
+import model.ItemBem;
 import ejb.CidadeBeanLocal;
 import ejb.ClienteBeanLocal;
 
@@ -24,6 +25,9 @@ public class CrtCliente {
 	private CidadeBeanLocal cidadeBean;
 	
 	private Cliente model = new Cliente();
+	private ItemBem modelItemBem = new ItemBem();
+	
+	
 	private String valorBusca;
 	
 	private List<Cidade> colCidades = new ArrayList<Cidade>();
@@ -92,6 +96,18 @@ public class CrtCliente {
 	}
 	public void setColClientes(List<Cliente> colClientes) {
 		this.colClientes = colClientes;
+	}
+
+
+
+	public ItemBem getModelItemBem() {
+		return modelItemBem;
+	}
+
+
+
+	public void setModelItemBem(ItemBem modelItemBem) {
+		this.modelItemBem = modelItemBem;
 	}
 	
 	

@@ -37,14 +37,14 @@ public class CrtTemplate {
 		}
 		
 	}
-	@PostConstruct
-	public void abrirLogin(){
-		FacesContext fc = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-		if(session.getAttribute("USUARIO_LOGADO") == null){
-			RequestContext.getCurrentInstance().execute("PF('dlgLogin').show()");
-		}
-	}
+//	@PostConstruct
+//	public void abrirLogin(){
+//		FacesContext fc = FacesContext.getCurrentInstance();
+//		HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
+//		if(session.getAttribute("USUARIO_LOGADO") == null){
+//			RequestContext.getCurrentInstance().execute("PF('dlgLogin').show()");
+//		}
+//	}
 	public void dologoff(){
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);

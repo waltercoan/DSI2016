@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,9 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -41,7 +45,18 @@ public class Cliente {
 	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
 	private Cidade cidadeNasc;
 	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="Cliente_oid")
+	private List<ItemBem> colItensBem =
+			new ArrayList<ItemBem>();
 	
+	
+	public List<ItemBem> getColItensBem() {
+		return colItensBem;
+	}
+	public void setColItensBem(List<ItemBem> colItensBem) {
+		this.colItensBem = colItensBem;
+	}
 	public Cidade getCidadeNasc() {
 		return cidadeNasc;
 	}

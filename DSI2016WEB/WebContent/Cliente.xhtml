@@ -79,7 +79,24 @@
 						
 						</p:selectOneMenu>
 						
-
+						<h:outputLabel name="lblBens" value="Bens" />
+						<p:dataTable value="#{crtcliente.model.colItensBem}"
+							selectionMode="single" selection="#{crtcliente.modelItemBem}"
+							rowKey="#{umItem.oid}" var="umItem" id="tabelaItens">
+							
+							<p:column>
+								<f:facet name="header">Descrição</f:facet>
+								<h:outputText value="#{umItem.propriedade.descricao}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">Valor Real</f:facet>
+								<h:outputText value="#{umItem.valorReal}" />
+							</p:column>
+							
+							
+						</p:dataTable>
+						
+						
 						<f:facet name="footer">
 							<p:commandButton value="OK" id="cbOK"
 								action="#{crtcliente.save()}" update=":formtable:tabledados"
