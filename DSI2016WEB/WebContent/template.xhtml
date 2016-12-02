@@ -28,8 +28,10 @@
                                     <p:menuitem value="Clientes" icon="ui-icon-contact" url="Cliente.xhtml"/>         
                                     <p:menuitem value="Cidade" icon="ui-icon-contact" url="Cidade.xhtml"/>
                                     <p:menuitem value="Logoff" icon="ui-icon-contact" action="#{crtTemplate.dologoff()}"/>
+                                    
                                 </p:submenu>
                             </p:menu>
+                            <h:commandLink value="Relatório Clientes" action="#{crtTemplate.report()}" />
                         </h:form>
                     </ui:insert>
                 </p:layoutUnit>  

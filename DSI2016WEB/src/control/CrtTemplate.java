@@ -55,7 +55,12 @@ public class CrtTemplate {
 		} catch (IOException ex) {
 		}
 	}
-	
+	public void report() throws IOException {
+	    // ...
+
+	    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+	    externalContext.redirect("http://localhost:8080/DSI2016WEB/printreport?reportName=lista&reportType=PDF");
+	}
 	
 	public Usuario getModel() {
 		return model;
